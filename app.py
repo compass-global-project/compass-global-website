@@ -1,4 +1,6 @@
 from flask import Flask, render_template, jsonify, request
+import requests
+import json
 import static.controller.controller as controller
 
 app = Flask(__name__, static_folder='static')
