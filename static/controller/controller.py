@@ -12,12 +12,6 @@ headers = {'Content-Type': 'application/json', 'Authorization': ('Bearer ' + api
 def send_date():
     data = request.get_json()
 
-    if 'startDate' not in data or 'endDate' not in data:
-        return jsonify(message="Both start and end dates must be provided", success=False)
-
-    startDate_str = data['startDate']
-    endDate_str = data['endDate']
-
     # Convert data to JSON
     body = json.dumps(data)
 
