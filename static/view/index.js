@@ -1,7 +1,7 @@
 initializeDatePicker = () => {
   var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     today = new Date(),
-    targetDate = new Date(today.getFullYear(), 11, 25);
+    targetDate = new Date(today.getFullYear(), 1, 1);
 
   setDate(targetDate);
   setYears(10);
