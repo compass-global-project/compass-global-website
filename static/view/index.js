@@ -52,9 +52,14 @@ body = () => {
   style.href = "static/styles.css";
 
   const titleDiv = document.getElementById("titleDiv");
+  const subTitleDiv = document.getElementById("subTitleDiv");
   const label = document.createElement("h1");
+  const subLabel = document.createElement("h2");
   label.textContent = "Food Insecurity Model";
+  subLabel.textContent = "created by COMPASS Institution at UCSD"
   titleDiv.append(label);
+  subTitleDiv.append(subLabel);
+
 
   const buttonDiv = document.getElementById("buttonDiv");
   const testButton = document.createElement("button");
