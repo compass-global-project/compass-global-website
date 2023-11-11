@@ -11,9 +11,13 @@
         <script src="{{ url_for('static', filename='controller/Controller.js') }}"></script>
         <script src="{{ url_for('static', filename='view/chart.js') }}"></script>
         <script src="{{ url_for('static', filename='view/index.js') }}"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="titleDiv"></div>
+        <div id="subTitleDiv"></div>
         <div id="datePickerDiv" class="select-date">
             <select id="select-day"></select>
             <select id="select-month">
