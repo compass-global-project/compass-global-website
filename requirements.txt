@@ -10,6 +10,7 @@ eventlet==0.33.3
 falcon==3.1.1
 Flask==3.0.0
 folium==0.15.0
+geojson==3.1.0
 greenlet==3.0.1
 gunicorn==21.2.0
 idna==3.4
