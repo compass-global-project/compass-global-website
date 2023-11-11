@@ -54,9 +54,11 @@ body = () => {
   const titleDiv = document.getElementById("titleDiv");
   const subTitleDiv = document.getElementById("subTitleDiv");
   const label = document.createElement("h1");
+  const subLabel = document.createElement("h2");
   label.textContent = "Food Insecurity Model";
-  subTitleDiv.textContent = "created by COMPASS Institution at UCSD"
+  subLabel.textContent = "created by COMPASS Institution at UCSD"
   titleDiv.append(label);
+  subTitleDiv.append(subLabel);
 
 
   const buttonDiv = document.getElementById("buttonDiv");

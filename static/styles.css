@@ -14,8 +14,16 @@ body {
   h1 {
     color: #F6F2EC;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 30px;
     font-family: 'NewYork', sans-serif;
+    font-size: 5rem;
+    margin-bottom: 0px;
+  }
+
+  h2 {
+    color: #F6F2EC;
+    text-align: center;
+    font-size: 1rem;
   }
   
   button {
@@ -32,8 +40,9 @@ body {
     border-radius: 30px;
     display: block;
     margin: 20px auto;
+    font-family: 'Montserrat', sans-serif;
   }
-  
+
   .select-date {
     display: flex;
     justify-content: center;
