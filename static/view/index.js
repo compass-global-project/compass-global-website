@@ -45,7 +45,24 @@ initializeDatePicker = () => {
       $("#select-year").append($("<option></option>").attr("value", i).text(i));
     }
   }
+
 };
+
+initializeSlider = () => {
+  $("#slider-range").slider({
+      range: "min",
+      min: new Date('2020.01.01').getTime() / 1000,
+      max: new Date('2030.12.31').getTime() / 1000,
+      step: 86400,
+      value: new Date('2023.01.01').getTime() / 1000,
+      slide: function(event, ui) {
+          $("#amount").text(new Date(ui.value * 1000).toDateString());
+      }
+  });
+
+  $("#amount").text(new Date($("#slider-range").slider("value") * 1000).toDateString());
+};
+
 
 body = () => {
   const style = document.createElement("link");
@@ -63,11 +80,13 @@ body = () => {
 
   const buttonDiv = document.getElementById("buttonDiv");
   const testButton = document.createElement("button");
+  
   testButton.onclick = testButtonClicked;
   testButton.textContent = "Send Request";
   buttonDiv.append(testButton);
 
   initializeDatePicker();
+  initializeSlider();
 };
 
 window.onload = () => {

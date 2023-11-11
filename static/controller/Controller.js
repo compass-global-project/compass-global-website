@@ -1,13 +1,17 @@
 const testButtonClicked = () => {
-  const day = document.getElementById("select-day").value;
-  const month = document.getElementById("select-month").value;
-  const year = document.getElementById("select-year").value;
-
-  const date = `${year}-${month}-${day}`;
-  console.log(date);
 
   const startDate = "2020-01-01";
-  const endDate = `${year}-${month}-${day}`;
+
+  var rawEndDate = new Date($("#slider-range").slider("value") * 1000);
+
+  var year = rawEndDate.getFullYear();
+  var month = rawEndDate.getMonth() + 1; // Adding 1 because getMonth() returns 0-11
+  var day = rawEndDate.getDate();
+
+  month = month < 10 ? '0' + month : month;
+  day = day < 10 ? '0' + day : day;
+
+  var endDate = `${year}-${month}-${day}`;
 
   const body = JSON.stringify({
     Inputs: {
