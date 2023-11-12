@@ -71,9 +71,12 @@ body = () => {
   const titleDiv = document.getElementById("titleDiv");
   const subTitleDiv = document.getElementById("subTitleDiv");
   const label = document.createElement("h1");
-  const subLabel = document.createElement("h2");
+  const subLabel = document.createElement("a");
+  subLabel.id = "subLabelId"; 
+  subLabel.href = "https://www.compassinstitution.com/";
   label.textContent = "Food Insecurity Model";
-  subLabel.textContent = "created by COMPASS Institution at UCSD"
+  subLabel.textContent = "COMPASS Institution @ UC San Diego"
+  subLabel.style.textDecoration = "none";
   titleDiv.append(label);
   subTitleDiv.append(subLabel);
 

@@ -35,10 +35,13 @@
 
         <div id="amount" class = "date-display"></div>
 
-        <div>
+        <div id="lineChart-container">
             <canvas id="lineChart"></canvas>
         </div>
         <div id="buttonDiv"></div>
 
+        <div class="heatmap-container">
+            {{ heatmap | safe }}
+        </div>
     </body>
 </html>
