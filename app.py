@@ -23,9 +23,8 @@ with open("india.geojson") as f:
     gj = geojson.load(f)
 
 
-
-@app.route("/")
-def home():
+@app.route("/v2")
+def v2():
     fig = px.choropleth_mapbox(
         df,
         geojson=gj,
@@ -34,28 +33,29 @@ def home():
         color="active cases",
         color_continuous_scale="Reds",
         mapbox_style="carto-positron",
-        zoom=3, 
-        center = {"lat": 20.5937, "lon": 78.9629},  # Center on India
+        zoom=3,
+        center={"lat": 20.5937, "lon": 78.9629},  # Center on India
         opacity=0.5,
-        labels={'active cases':'Active Cases'}
+        labels={"active cases": "Active Cases"},
     )
 
     fig.update_layout(
         autosize=True,
         margin=dict(t=0, b=0, l=0, r=0),
-        paper_bgcolor='rgba(0,0,0,0)',  # Change this to your desired color
-        plot_bgcolor='rgba(0,0,0,0)',  # Change this to your desired color
+        paper_bgcolor="rgba(0,0,0,0)",  # Change this to your desired color
+        plot_bgcolor="rgba(0,0,0,0)",  # Change this to your desired color
         coloraxis_colorbar=dict(
-            tickfont=dict(
-                color='white'  # Change this to your desired color
-            ),
-            titlefont=dict(
-                color='white'  # Change this to your desired color
-            )
-        )
+            tickfont=dict(color="white"),  # Change this to your desired color
+            titlefont=dict(color="white"),  # Change this to your desired color
+        ),
     )
-    heatmap_html = pyo.plot(fig, output_type='div')
-    return render_template("index.html", heatmap=heatmap_html)
+    heatmap_html = pyo.plot(fig, output_type="div")
+    return render_template("v2.html", heatmap=heatmap_html)
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 
 @app.route("/get_text", methods=["GET"])
