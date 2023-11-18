@@ -70,3 +70,15 @@ button {
     display: flex;
     margin-top: 3rem;
   }
+
+.slider-container {
+  width: 300px; /* Adjust as needed */
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+input[type=range] {
+  width: 100%;
+  margin: 15px 0;
+}

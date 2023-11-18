@@ -1,66 +1,75 @@
-initializeDatePicker = () => {
-  var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-    today = new Date(),
-    targetDate = new Date(today.getFullYear(), 1, 1);
+// initializeDatePicker = () => {
+//   var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+//     today = new Date(),
+//     targetDate = new Date(today.getFullYear(), 1, 1);
 
-  setDate(targetDate);
-  setYears(10);
+//   setDate(targetDate);
+//   setYears(10);
 
-  $("#select-month").change(function () {
-    var monthIndex = $("#select-month").val();
-    setDays(monthIndex);
-  });
+//   $("#select-month").change(function () {
+//     var monthIndex = $("#select-month").val();
+//     setDays(monthIndex);
+//   });
 
-  function setDate(date) {
-    setDays(date.getMonth());
-    $("#select-day").val(date.getDate());
-    $("#select-month").val(date.getMonth());
-    $("#select-year").val(date.getFullYear());
-  }
+//   function setDate(date) {
+//     setDays(date.getMonth());
+//     $("#select-day").val(date.getDate());
+//     $("#select-month").val(date.getMonth());
+//     $("#select-year").val(date.getFullYear());
+//   }
 
-  function setDays(monthIndex) {
-    var optionCount = $("#select-day option").length,
-      daysCount = daysInMonth[monthIndex];
+//   function setDays(monthIndex) {
+//     var optionCount = $("#select-day option").length,
+//       daysCount = daysInMonth[monthIndex];
 
-    if (optionCount < daysCount) {
-      for (var i = optionCount; i < daysCount; i++) {
-        $("#select-day").append(
-          $("<option></option>")
-            .attr("value", i + 1)
-            .text(i + 1)
-        );
-      }
-    } else {
-      for (var i = daysCount; i < optionCount; i++) {
-        var optionItem = "#select-day option[value=" + (i + 1) + "]";
-        $(optionItem).remove();
-      }
-    }
-  }
+//     if (optionCount < daysCount) {
+//       for (var i = optionCount; i < daysCount; i++) {
+//         $("#select-day").append(
+//           $("<option></option>")
+//             .attr("value", i + 1)
+//             .text(i + 1)
+//         );
+//       }
+//     } else {
+//       for (var i = daysCount; i < optionCount; i++) {
+//         var optionItem = "#select-day option[value=" + (i + 1) + "]";
+//         $(optionItem).remove();
+//       }
+//     }
+//   }
 
-  function setYears(val) {
-    var startYear = 2020;
-    var endYear = 2030;
-    for (var i = startYear; i <= endYear; i++) {
-      $("#select-year").append($("<option></option>").attr("value", i).text(i));
-    }
-  }
+//   function setYears(val) {
+//     var startYear = 2020;
+//     var endYear = 2030;
+//     for (var i = startYear; i <= endYear; i++) {
+//       $("#select-year").append($("<option></option>").attr("value", i).text(i));
+//     }
+//   }
 
-};
+// };
 
 initializeSlider = () => {
-  $("#slider-range").slider({
-      range: "min",
-      min: new Date('2020.01.01').getTime() / 1000,
-      max: new Date('2030.12.31').getTime() / 1000,
-      step: 86400,
-      value: new Date('2023.01.01').getTime() / 1000,
-      slide: function(event, ui) {
-          $("#amount").text(new Date(ui.value * 1000).toDateString());
-      }
-  });
+  const slider = document.getElementById('dateSlider');
+    const dateDisplay = document.getElementById('dateLabel');
 
-  $("#amount").text(new Date($("#slider-range").slider("value") * 1000).toDateString());
+    const startDate = new Date('2020-01-01');
+    const endDate = new Date('2030-12-31');
+    const timeDifference = endDate - startDate;
+
+    // Convert dates to UNIX timestamps in seconds
+    slider.min = startDate.getTime() / 1000;
+    slider.max = endDate.getTime() / 1000;
+    slider.value = new Date('2023-01-01').getTime() / 1000;
+    slider.step = 86400; // One day in seconds
+
+    slider.oninput = function() {
+        const selectedDate = new Date(this.value * 1000);
+        dateDisplay.textContent = selectedDate.toDateString();
+    };
+
+    // Initial display update
+    dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
+
 };
 
 
@@ -85,7 +94,7 @@ body = () => {
   testButton.textContent = "Send Request";
   buttonDiv.append(testButton);
 
-  initializeDatePicker();
+  //initializeDatePicker();
   initializeSlider();
 };
 
