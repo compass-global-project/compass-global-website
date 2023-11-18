@@ -96,3 +96,15 @@ button {
     margin-top: 0;
     padding-top: 50px;
 }
+
+.slider-container {
+  width: 300px; /* Adjust as needed */
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+input[type=range] {
+  width: 100%;
+  margin: 15px 0;
+}
