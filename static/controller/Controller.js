@@ -42,6 +42,8 @@ const testButtonClicked = () => {
     .then((data) => {
       renderChart(data);
       console.log("Success:", data);
+      var lineChartDiv = document.getElementById('lineChart-container');
+        lineChartDiv.style.display = 'block';
     })
     .catch((error) => {
       console.error("Error:", error);
