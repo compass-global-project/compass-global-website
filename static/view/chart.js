@@ -1,4 +1,8 @@
 const renderChart = (data, endMonth, endDay, endYear) => {
+  document.getElementById("chart-container").innerHTML = "&nbsp;";
+  document.getElementById("chart-container").innerHTML =
+    '<canvas id="line-chart"></canvas>';
+
   const vals = JSON.parse(data.text);
 
   var xyValues = [];
@@ -20,8 +24,7 @@ const renderChart = (data, endMonth, endDay, endYear) => {
     let newDate = loop.setDate(loop.getDate() + 1);
     loop = new Date(newDate);
   }
-  console.log(xyValues);
-  new Chart(document.getElementById("lineChart"), {
+  new Chart(document.getElementById("line-chart"), {
     type: "line",
     data: {
       labels: xyValues.map((row) => row.x),

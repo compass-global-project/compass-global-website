@@ -14,26 +14,23 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-
-
     </head>
     <body>
         <div id="titleDiv"></div>
         <div id="subTitleDiv"></div>
-
         <div class="slider-container">
-            <input type="range" id="dateSlider" min="0" max="100" />
+            <input
+                type="range"
+                id="dateSlider"
+                min="0"
+                max="100"
+            >
             <div id="dateLabel"></div>
         </div>
-        
         <div id="buttonDiv"></div>
-
-        <div id="amount" class = "date-display"></div>
-
-        <div>
-            <canvas id="lineChart"></canvas>
+        <div id="amount" class="date-display"></div>
+        <div id="chart-container">
+            <canvas id="line-chart"></canvas>
         </div>
-        
-
     </body>
 </html>

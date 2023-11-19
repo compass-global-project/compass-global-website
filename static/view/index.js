@@ -49,29 +49,29 @@
 // };
 
 initializeSlider = () => {
-  const slider = document.getElementById('dateSlider');
-    const dateDisplay = document.getElementById('dateLabel');
+  const slider = document.getElementById("dateSlider");
+  const dateDisplay = document.getElementById("dateLabel");
 
-    const startDate = new Date('2020-01-01');
-    const endDate = new Date('2030-12-31');
-    const timeDifference = endDate - startDate;
+  const startDate = new Date("2020-01-01");
+  const endDate = new Date("2030-12-31");
+  const timeDifference = endDate - startDate;
 
-    // Convert dates to UNIX timestamps in seconds
-    slider.min = startDate.getTime() / 1000;
-    slider.max = endDate.getTime() / 1000;
-    slider.value = new Date('2023-01-01').getTime() / 1000;
-    slider.step = 86400; // One day in seconds
+  // Convert dates to UNIX timestamps in seconds
+  slider.min = startDate.getTime() / 1000;
+  slider.max = endDate.getTime() / 1000;
+  slider.value = new Date("2023-01-01").getTime() / 1000;
+  slider.step = 86400; // One day in seconds
 
-    slider.oninput = function() {
-        const selectedDate = new Date(this.value * 1000);
-        dateDisplay.textContent = selectedDate.toDateString();
-    };
+  slider.oninput = function () {
+    const selectedDate = new Date(this.value * 1000);
+    dateDisplay.textContent = selectedDate.toDateString();
+  };
 
-    // Initial display update
-    dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
+  slider.onclick = testButtonClicked;
 
+  // Initial display update
+  dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
 };
-
 
 body = () => {
   const style = document.createElement("link");
@@ -81,21 +81,13 @@ body = () => {
   const subTitleDiv = document.getElementById("subTitleDiv");
   const label = document.createElement("h1");
   const subLabel = document.createElement("a");
-  subLabel.id = "subLabelId"; 
+  subLabel.id = "subLabelId";
   subLabel.href = "https://www.compassinstitution.com/";
   label.textContent = "Food Insecurity Model";
-  subLabel.textContent = "COMPASS Institution @ UC San Diego"
+  subLabel.textContent = "COMPASS Institution @ UC San Diego";
   subLabel.style.textDecoration = "none";
   titleDiv.append(label);
   subTitleDiv.append(subLabel);
-
-
-  const buttonDiv = document.getElementById("buttonDiv");
-  const testButton = document.createElement("button");
-  
-  testButton.onclick = testButtonClicked;
-  testButton.textContent = "Send Request";
-  buttonDiv.append(testButton);
 
   //initializeDatePicker();
   initializeSlider();
@@ -103,4 +95,5 @@ body = () => {
 
 window.onload = () => {
   body();
+  testButtonClicked();
 };

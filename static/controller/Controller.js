@@ -40,7 +40,7 @@ const testButtonClicked = () => {
     .then((data) => {
       renderChart(data, month, day, year);
       console.log("Success:", data);
-      var lineChartDiv = document.getElementById("lineChart-container");
+      var lineChartDiv = document.getElementById("line-chart");
       lineChartDiv.style.display = "block";
     })
     .catch((error) => {
