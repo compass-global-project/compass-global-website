@@ -54,15 +54,15 @@ initializeSlider = () => {
   
     const dateDisplay = document.getElementById('dateLabel');
 
-    const startDate = new Date('2020-01-01');
-    const endDate = new Date('2030-12-31');
-    const timeDifference = endDate - startDate;
+  const startDate = new Date("2020-01-01");
+  const endDate = new Date("2030-12-31");
+  const timeDifference = endDate - startDate;
 
-    // Convert dates to UNIX timestamps in seconds
-    slider.min = startDate.getTime() / 1000;
-    slider.max = endDate.getTime() / 1000;
-    slider.value = new Date('2023-01-01').getTime() / 1000;
-    slider.step = 86400; // One day in seconds
+  // Convert dates to UNIX timestamps in seconds
+  slider.min = startDate.getTime() / 1000;
+  slider.max = endDate.getTime() / 1000;
+  slider.value = new Date("2023-01-01").getTime() / 1000;
+  slider.step = 86400; // One day in seconds
 
     slider.oninput = function() {
         const selectedDate = new Date(this.value * 1000);
@@ -71,9 +71,8 @@ initializeSlider = () => {
         testButtonClicked();
     };
 
-    // Initial display update
-    dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
-
+  // Initial display update
+  dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
 };
 
 // slider.addEventListener('input', function() {
@@ -103,18 +102,11 @@ body = () => {
   titleDiv.append(label);
   subTitleDiv.append(subLabel);
 
-
-  const buttonDiv = document.getElementById("buttonDiv");
-  const testButton = document.createElement("button");
-  
-  testButton.onclick = testButtonClicked;
-  testButton.textContent = "Send Request";
-  buttonDiv.append(testButton);
-
   //initializeDatePicker();
   initializeSlider();
 };
 
 window.onload = () => {
   body();
+  testButtonClicked();
 };
