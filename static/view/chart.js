@@ -30,10 +30,10 @@ const renderChart = (data, endMonth, endDay, endYear) => {
       labels: xyValues.map((row) => row.x),
       datasets: [
         {
-          pointBackgroundColor: "rgba(0,0,255,1)",
+          pointBackgroundColor: "rgba(255,255,255,1)",
           label: "Price of Rice",
           data: xyValues.map((row) => row.y),
-          borderColor: "rgb(75, 192, 192)",
+          borderColor: "rgb(13, 27, 55)",
         },
       ],
     },

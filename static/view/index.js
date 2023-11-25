@@ -48,11 +48,13 @@
 
 // };
 
-initializeSlider = () => {
-  const slider = document.getElementById("dateSlider");
-  const dateDisplay = document.getElementById("dateLabel");
 
-  const startDate = new Date("2020-01-01");
+
+initializeSlider = () => {
+  const slider = document.getElementById('dateSlider');
+  const dateDisplay = document.getElementById('dateLabel');
+
+  const startDate = new Date("2020-01-02");
   const endDate = new Date("2030-12-31");
   const timeDifference = endDate - startDate;
 
@@ -62,15 +64,24 @@ initializeSlider = () => {
   slider.value = new Date("2023-01-01").getTime() / 1000;
   slider.step = 86400; // One day in seconds
 
-  slider.oninput = function () {
-    const selectedDate = new Date(this.value * 1000);
-    dateDisplay.textContent = selectedDate.toDateString();
-  };
+    slider.oninput = function() {
+        const selectedDate = new Date(this.value * 1000);
+        const formattedDate = selectedDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        dateDisplay.textContent = formattedDate;
+    };
 
   slider.onclick = testButtonClicked;
-
-  // Initial display update
-  dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
+  const initialDate = new Date(slider.value * 1000);
+  const formattedInitialDate = initialDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  dateDisplay.textContent = formattedInitialDate;
 };
 
 body = () => {
@@ -81,10 +92,12 @@ body = () => {
   const subTitleDiv = document.getElementById("subTitleDiv");
   const label = document.createElement("h1");
   const subLabel = document.createElement("a");
-  subLabel.id = "subLabelId";
+
+
+  subLabel.id = "subLabelId"; 
   subLabel.href = "https://www.compassinstitution.com/";
-  label.textContent = "Food Insecurity Model";
-  subLabel.textContent = "COMPASS Institution @ UC San Diego";
+  label.textContent = "A Prediction of Rice Prices in India";
+  subLabel.textContent = "COMPASS INSTITUTION AT UC SAN DIEGO"
   subLabel.style.textDecoration = "none";
   titleDiv.append(label);
   subTitleDiv.append(subLabel);

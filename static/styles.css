@@ -1,29 +1,41 @@
+@font-face{
+  font-family: 'NewYork';
+  src: url('NewYork.otf') ;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
   font-family: "Montserrat", sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #0e1f39;
+  background-color: #fff;
+  position: relative;
 }
 
 h1 {
-  color: #f6f2ec;
+  color: #0D1B37;
   text-align: center;
-  margin-top: 30px;
-  font-family: "Montserrat", sans-serif;
+  margin-top: 1rem;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "NewYork", "Monsterrat",sans-serif ;
   font-size: 4rem;
-  margin-bottom: 0px;
+  margin-bottom: .5rem;
 }
 
 h2 {
-  color: #f6f2ec;
+  color: #0D1B37;
   text-align: center;
   font-size: 1rem;
 }
 #subLabelId {
-  color: #a8bbd7;
-  text-align: center;
-  font-size: 1rem;
+    color: #0D1B37;
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 10px;
+    margin-bottom: 2rem;
 }
 
 button {
@@ -103,4 +115,33 @@ button {
 input[type="range"] {
   width: 100%;
   margin: 15px 0;
+}
+
+.circle-top-left {
+  width: 1000px; 
+  height: 1000px;
+  background: radial-gradient(circle 500px at center, #B28DFF, #ffffff);
+  border-radius: 50%;
+  position: fixed;
+  top: -500px;
+  left: -500px;
+  z-index: -1000;
+  opacity: 80%;
+}
+
+.circle-bottom-right {
+  width: 1000px; 
+  height: 1000px; 
+  background: radial-gradient(circle 500px at center, #B28DFF, #ffffff);
+  border-radius: 50%;
+  position: fixed;
+  bottom: -500px;
+  right: -500px;
+  z-index: -1000;
+  opacity: 80%;
+}
+
+.date{
+  color: #0D1B37;
+  font-size: 1.5rem;
 }
