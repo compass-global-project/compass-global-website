@@ -48,13 +48,13 @@
 
 // };
 
-const slider = document.getElementById('dateSlider');
+
 
 initializeSlider = () => {
-  
-    const dateDisplay = document.getElementById('dateLabel');
+  const slider = document.getElementById('dateSlider');
+  const dateDisplay = document.getElementById('dateLabel');
 
-  const startDate = new Date("2020-01-01");
+  const startDate = new Date("2020-01-02");
   const endDate = new Date("2030-12-31");
   const timeDifference = endDate - startDate;
 
@@ -66,18 +66,23 @@ initializeSlider = () => {
 
     slider.oninput = function() {
         const selectedDate = new Date(this.value * 1000);
-        dateDisplay.textContent = selectedDate.toDateString();
-        console.log(selectedDate.toDateString());
-        testButtonClicked();
+        const formattedDate = selectedDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        dateDisplay.textContent = formattedDate;
     };
 
-  // Initial display update
-  dateDisplay.textContent = new Date(slider.value * 1000).toDateString();
+  slider.onclick = testButtonClicked;
+  const initialDate = new Date(slider.value * 1000);
+  const formattedInitialDate = initialDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  dateDisplay.textContent = formattedInitialDate;
 };
-
-// slider.addEventListener('input', function() {
-//   testButtonClicked();
-// });
 
 body = () => {
   const style = document.createElement("link");
@@ -87,11 +92,6 @@ body = () => {
   const subTitleDiv = document.getElementById("subTitleDiv");
   const label = document.createElement("h1");
   const subLabel = document.createElement("a");
-  
-  // const image = document.createElement('img');
-  // image.src = "compass-logo-black.png";
-  // const container = document.getElementById('logo');
-  // container.appendChild(image);
 
 
   subLabel.id = "subLabelId"; 

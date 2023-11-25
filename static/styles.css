@@ -1,7 +1,7 @@
 @font-face{
   font-family: 'NewYork';
-  src: url('NewYork.otf') format('opentype');
-  font-weight: 300;
+  src: url('NewYork.otf') ;
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -117,35 +117,28 @@ input[type="range"] {
   margin: 15px 0;
 }
 
-.circle {
-  width: 300px; /* or the size you want */
-  height: 300px; /* or the size you want */
-  background-color: purple;
-  border-radius: 50%;
-  position: absolute;
-  
-}
-
 .circle-top-left {
-  width: 1000px; /* or the size you want */
-  height: 1000px; /* or the size you want */
+  width: 1000px; 
+  height: 1000px;
   background: radial-gradient(circle 500px at center, #B28DFF, #ffffff);
   border-radius: 50%;
   position: fixed;
   top: -500px;
   left: -500px;
   z-index: -1000;
+  opacity: 80%;
 }
 
 .circle-bottom-right {
-  width: 1000px; /* or the size you want */
-  height: 1000px; /* or the size you want */
+  width: 1000px; 
+  height: 1000px; 
   background: radial-gradient(circle 500px at center, #B28DFF, #ffffff);
   border-radius: 50%;
   position: fixed;
   bottom: -500px;
   right: -500px;
   z-index: -1000;
+  opacity: 80%;
 }
 
 .date{
