@@ -16,7 +16,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
-        <img id="logo" src="../static/LogoHQ.png" style="width: 150px; margin-left: 3rem; margin-top: 3rem;">
+        <a href="https://www.compassinstitution.com/"><img id="logo" src="../static/LogoHQ.png" style="width: 150px; margin-left: 3rem; margin-top: 3rem;"></a>
+        
+        
+        
+
         <div class="circle-top-left"></div>
         <div class="circle-bottom-right"></div>
 
@@ -31,10 +35,35 @@
             >
             <div class="date" id="dateLabel"></div>
         </div>
+
+        <div class="buttons" style="display: inline-flex; justify-content: center; width: 100%;">
+            <div style="width: 50%;">
+                <button style="margin-right: 1rem" onclick="toggleSwitchOn()">
+                    Graph View
+                </button>
+            </div>
+            <div style="width: 50%;">
+                <button style="margin-left: 1rem" onclick="toggleSwitchOff()">
+                    Heat Map View
+                </button>
+            </div>
+        
+        </div>
+
         <div id="buttonDiv"></div>
         <div id="amount" class="date-display"></div>
+        
         <div id="chart-container">
             <canvas id="line-chart"></canvas>
         </div>
+
+        <div id="heatmap" display="none">
+            <div class="heatmap-container">
+                {{ heatmap | safe }}
+            </div>
+        </div>
+
+        
+        
     </body>
 </html>
