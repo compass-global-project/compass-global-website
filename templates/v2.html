@@ -31,6 +31,14 @@
             <canvas id="lineChart"></canvas>
         </div>
         <div id="buttonDiv"></div>
+        <form method="POST">
+            <select name="colorscale">
+                {% for colorscale in colorscales %}
+                    <option value="{{ colorscale }}" {% if colorscale == selected_colorscale %}selected{% endif %}>{{ colorscale }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Update colorscale">
+        </form>
         <div class="heatmap-container">
             {{ heatmap | safe }}
         </div>
