@@ -40,8 +40,8 @@ h2 {
 }
 
 button {
-  background-color: #a8bbd7;
-  color: #0e1f39;
+  background-color: #0D1B37;
+  color: #ffffff;
   justify-content: center;
   padding: 15px 32px;
   text-align: center;
@@ -146,3 +146,4 @@ input[type="range"] {
   color: #0D1B37;
   font-size: 1.5rem;
 }
+

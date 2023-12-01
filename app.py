@@ -29,7 +29,7 @@ named_colorscales = px.colors.named_colorscales()
 # Convert 'active cases' column to numeric
 df['active cases'] = pd.to_numeric(df['active cases'], errors='coerce')
 
-@app.route("/v2", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def v2():
     colorscale = request.form.get('colorscale', 'Viridis')  # Get the selected colorscale
 
@@ -59,7 +59,7 @@ def v2():
     )
 
     heatmap_html = pyo.plot(fig, output_type='div')
-    return render_template("v2.html", heatmap=heatmap_html, colorscales=named_colorscales, selected_colorscale=colorscale)
+    return render_template("index.html", heatmap=heatmap_html, colorscales=named_colorscales, selected_colorscale=colorscale)
 
 
 @app.route("/")

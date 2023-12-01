@@ -48,7 +48,25 @@
 
 // };
 
+function toggleSwitchOff(){
+  toggle_display(false);
+}
 
+function toggleSwitchOn(){
+  toggle_display(true);
+}
+
+toggle_display = (show_chart) => {
+    if(!show_chart){
+        document.getElementById('chart-container').style.display = "none";
+        document.getElementById('heatmap').style.display = 'block';
+    }
+    else {
+        document.getElementById('chart-container').style.display = 'block';
+        document.getElementById('heatmap').style.display = "none";
+    }
+
+}
 
 initializeSlider = () => {
   const slider = document.getElementById('dateSlider');
@@ -104,6 +122,7 @@ body = () => {
 
   //initializeDatePicker();
   initializeSlider();
+  toggle_display(false);
 };
 
 window.onload = () => {
