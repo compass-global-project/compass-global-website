@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.offline as pyo
 import plotly.express as px
 import geojson
+import plotly.graph_objects as go
 
 app = Flask(__name__, static_folder="static")
 
@@ -18,69 +19,52 @@ headers = {"Content-Type": "application/json", "Authorization": ("Bearer " + api
 
 df = pd.read_csv("data.csv")
 
+mapbox_token = 'pk.eyJ1IjoiYW5pc2hjZCIsImEiOiJjbG93MG0yNHEwMW9tMmtuYWYydTV5NXQzIn0.gbZ2kS7iaY3BKapisdMUTQ'
 
 with open("india.geojson") as f:
     gj = geojson.load(f)
 
+named_colorscales = px.colors.named_colorscales()
 
-#@app.route("/")
+# Convert 'active cases' column to numeric
+df['active cases'] = pd.to_numeric(df['active cases'], errors='coerce')
+
+@app.route("/", methods=["GET", "POST"])
 def v2():
-    fig = px.choropleth_mapbox(
-        df,
-        geojson=gj,
+    colorscale = request.form.get('colorscale', 'Viridis')  # Get the selected colorscale
+
+    fig = go.Figure(data=go.Choroplethmapbox(
+        geojson=gj, 
         featureidkey="properties.ST_NM",
-        locations="state",
-        color="active cases",
-        color_continuous_scale="Reds",
-        mapbox_style="carto-positron",
-        zoom=3,
-        center={"lat": 20.5937, "lon": 78.9629},  # Center on India
-        opacity=0.5,
-        labels={"active cases": "Active Cases"},
-    )
+        locations=df.state, 
+        z=df['active cases'],
+        colorscale=colorscale,  # Use the selected colorscale
+        zmin=0, 
+        zmax=df['active cases'].max(), 
+        marker_line_width=0.5,  # Set line width
+        marker_line_color="black",  # Set line color
+        colorbar=dict(
+            title='Active Cases',
+            tickfont=dict(color='white'),
+            titlefont=dict(color='white')
+        )
+    ))
 
     fig.update_layout(
-        autosize=True,
-        margin=dict(t=0, b=0, l=0, r=0),
-        paper_bgcolor="rgba(0,0,0,0)",  # Change this to your desired color
-        plot_bgcolor="rgba(0,0,0,0)",  # Change this to your desired color
-        coloraxis_colorbar=dict(
-            tickfont=dict(color="white"),  # Change this to your desired color
-            titlefont=dict(color="white"),  # Change this to your desired color
-        ),
+        mapbox_style="light",
+        mapbox_accesstoken=mapbox_token,
+        mapbox_zoom=3,
+        mapbox_center = {"lat": 20.5937, "lon": 78.9629},  # Center on India
+        margin={"r":0,"t":0,"l":0,"b":0},
     )
-    heatmap_html = pyo.plot(fig, output_type="div")
-    return render_template("index.html", heatmap=heatmap_html)
+
+    heatmap_html = pyo.plot(fig, output_type='div')
+    return render_template("index.html", heatmap=heatmap_html, colorscales=named_colorscales, selected_colorscale=colorscale)
 
 
 @app.route("/")
 def home():
-    fig = px.choropleth_mapbox(
-        df,
-        geojson=gj,
-        featureidkey="properties.ST_NM",
-        locations="state",
-        color="active cases",
-        color_continuous_scale="Reds",
-        mapbox_style="carto-positron",
-        zoom=3,
-        center={"lat": 20.5937, "lon": 78.9629},  # Center on India
-        opacity=0.5,
-        labels={"active cases": "Active Cases"},
-    )
-
-    fig.update_layout(
-        autosize=True,
-        margin=dict(t=0, b=0, l=0, r=0),
-        paper_bgcolor="rgba(0,0,0,0)",  # Change this to your desired color
-        plot_bgcolor="rgba(0,0,0,0)",  # Change this to your desired color
-        coloraxis_colorbar=dict(
-            tickfont=dict(color="white"),  # Change this to your desired color
-            titlefont=dict(color="white"),  # Change this to your desired color
-        ),
-    )
-    heatmap_html = pyo.plot(fig, output_type="div")
-    return render_template("index.html", heatmap=heatmap_html)
+    return render_template("index.html")
 
 
 @app.route("/get_text", methods=["GET"])
@@ -94,4 +78,4 @@ def send_date_api():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
