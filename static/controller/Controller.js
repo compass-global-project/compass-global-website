@@ -12,7 +12,7 @@ const testButtonClicked = () => {
 
   var endDate = `${year}-${month}-${day}`;
 
-  const body = JSON.stringify({
+  const bodyChart = JSON.stringify({
     Inputs: {
       input1: [
         { Date: startDate + "T00:00:00Z" },
@@ -24,14 +24,12 @@ const testButtonClicked = () => {
     GlobalParameters: {},
   });
 
-  console.log(body);
-
   fetch("/send-date", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: body,
+    body: bodyChart,
   })
     .then((response) => {
       console.log(response);
@@ -46,4 +44,27 @@ const testButtonClicked = () => {
     .catch((error) => {
       console.error("Error:", error);
     });
+};
+
+renderHeatMap = () => {
+  const bodyHeatmap = JSON.stringify({
+    Inputs: {
+      input1: [
+        { Column2: 0, Date: startDate + "T00:00:00Z" },
+        {
+          Column2: 1,
+          Date: endDate + "T00:00:00Z",
+        },
+      ],
+    },
+    GlobalParameters: {},
+  });
+
+  fetch("/send-heatmap-dates", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: bodyHeatmap,
+  });
 };
